@@ -1,0 +1,146 @@
+﻿<Page
+    x:Class="RemoteControl.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Silver">
+        <Pivot HorizontalAlignment="Left" Margin="0,0,0,0" Title="Pilot" Grid.RowSpan="3" Grid.Row="1" SelectionChanged="Pivot_SelectionChanged">
+            <PivotItem Header="Główna">
+                <Grid Background="Silver">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid VerticalAlignment="Stretch" Margin="10" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="VolumeDown" Grid.Column="0" Content="Down" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="LightBlue" Click="volume_down" />
+                        <Button x:Name="VolumeMute" Grid.Column="1" Content="Mute" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="LightBlue" Click="volume_mute" />
+                        <Button x:Name="VolumeUp" Grid.Column="2" Content="Up" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="LightBlue" Click="volume_up" />
+
+                    </Grid>
+                    <Grid VerticalAlignment="Stretch" Margin="10" HorizontalAlignment="Stretch" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="70"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition MinHeight="70"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="13*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="Play" Content="Play" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="LightBlue" Click="click_play" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                        <Button x:Name="Pause" Content="Pause" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="Yellow" Click="click_pause" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                        <Button x:Name="Next" Content="Next" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Click="click_next" Background="Green" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
+                        <Button x:Name="Prev" Content="Prev" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Background="Pink" Click="click_prev" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                        </Button>
+                    </Grid>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Lista utworów" Loaded="PivotItem_Loaded" Loading="PivotItem_Loading" GotFocus="PivotItem_GotFocus">
+                <Grid Background="Silver">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="13*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Clear" Content="Clear" Background="Aqua" Margin="3"  Height="30" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tapped="Clear_Tapped"/>
+                    <ListBox x:Name="playlist" Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <ListBoxItem DataContext="abc" Tapped="ListBoxItem_Tapped">Track 1</ListBoxItem>
+                    </ListBox>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Wybór źródła">
+                <Grid Background="Silver">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="13*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Background="Maroon" x:Name="radio_button" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Content="Graj radio" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Grid.ColumnSpan="2" Click="radio_button_Click" />
+                    <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Height="58" Margin="0,0,0,0" Grid.ColumnSpan="2" PlaceholderText="Wybierz stację" >
+                        <ComboBoxItem Content="PR Jedynka"/>
+                        <ComboBoxItem Content="PR Dwójka" />
+                        <ComboBoxItem Content="PR Trójka"/>
+                        <ComboBoxItem Content="PR Czwórka"/>
+                    </ComboBox>
+
+                    <TextBox x:Name="textBlock" Height="23" Grid.Row="3" Margin="10" TextWrapping="Wrap" Text="" KeyDown="textBlock_KeyDown" HorizontalContentAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="4" />
+                    <Button x:Name="button" Content="Search" Grid.Row="4" Margin="10" HorizontalAlignment="Stretch" Height="36" VerticalAlignment="Bottom" Click="button_Click" Grid.ColumnSpan="4" />
+                </Grid>
+            </PivotItem>
+
+            <PivotItem Header="Klawisze">
+                <Grid Background="Silver">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Background="LightBlue" x:Name="key_up" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Content="UP" Grid.Row="1" Grid.Column="1" Margin="5" Grid.ColumnSpan="1" Click="key_up_Click" />
+                    <Button Background="LightBlue" x:Name="key_left" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Content="LEFT" Grid.Row="2" Grid.Column="0" Margin="5" Grid.ColumnSpan="1" Click="key_left_Click" />
+                    <Button Background="LightBlue" x:Name="key_down" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Content="DOWN" Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="1" Click="key_down_Click" />
+                    <Button Background="LightBlue" x:Name="key_right" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Content="RIGHT" Grid.Row="2" Grid.Column="2"  Margin="5" Grid.ColumnSpan="1" Click="key_right_Click" />
+
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Ustawienia">
+                <Grid Background="Silver">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="IP:" Grid.Column="0" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ip_address" Text="172.16.0.112" Grid.Row="0" Margin="10" FontSize="16" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="3" TextChanged="ip_address_TextChanged"/>
+                    <!--TextBlock Text="Port:" Grid.Column="0" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="port" Text="80" FontSize="16" Grid.Row="1" Margin="10" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="3" TextChanged="port_TextChanged"/-->
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
